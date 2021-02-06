@@ -10,15 +10,13 @@ import com.tatvasoft.apurv.data.model.ApiUser
 import kotlinx.android.synthetic.main.row_user.view.*
 
 class ApiUserAdapter(
-    private val users: ArrayList<ApiUser>
+    private val users: ArrayList<ApiUser.Data.User>
 ) : RecyclerView.Adapter<ApiUserAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(user: ApiUser, position: Int) {
-//            itemView.textViewUserName.text = user.name
-//            itemView.textViewUserEmail.text = user.email
-            Glide.with(itemView.ivUser.context)
-                .load(user.data.users[position].image)
+        fun bind(user: ApiUser.Data.User, position: Int) {
+            Glide.with(itemView.context)
+                .load(user.image)
                 .into(itemView.ivUser)
         }
     }
@@ -36,7 +34,7 @@ class ApiUserAdapter(
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
         holder.bind(users[position], position)
 
-    fun addData(list: List<ApiUser>) {
+    fun addData(list: List<ApiUser.Data.User>) {
         users.addAll(list)
     }
 

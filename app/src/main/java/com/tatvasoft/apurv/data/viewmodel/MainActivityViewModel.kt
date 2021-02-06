@@ -13,7 +13,9 @@ class MainActivityViewModel(
     private val apiHelper: ApiHelper,
 ) : ViewModel() {
 
-    private val users = MutableLiveData<Resource<List<ApiUser>>>()
+    private val users = MutableLiveData<Resource<ApiUser>>()
+    private var INITIAL_PAGE_OFFSET = 0
+    private var PAGE_LIMIT = 10
 
     init {
         fetchUsers()
@@ -23,7 +25,7 @@ class MainActivityViewModel(
         viewModelScope.launch {
             users.postValue(Resource.loading(null))
             try {
-                val usersFromApi = apiHelper.getUsers(0,10)
+                val usersFromApi = apiHelper.getUsers(INITIAL_PAGE_OFFSET,PAGE_LIMIT)
                 users.postValue(Resource.success(usersFromApi))
             } catch (e: Exception) {
                 users.postValue(Resource.error(e.toString(), null))
@@ -31,7 +33,7 @@ class MainActivityViewModel(
         }
     }
 
-    fun getUsers(): LiveData<Resource<List<ApiUser>>> {
+    fun getUsers(): LiveData<Resource<ApiUser>> {
         return users
     }
 

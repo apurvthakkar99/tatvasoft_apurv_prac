@@ -65,14 +65,12 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun renderList(users: List<ApiUser>) {
-        adapter.addData(users)
+    private fun renderList(users: ApiUser) {
+        adapter.addData(users.data.users)
         adapter.notifyDataSetChanged()
     }
 
     private fun setupViewModel() {
-
-        //viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
         viewModel = ViewModelProviders.of(
             this,
