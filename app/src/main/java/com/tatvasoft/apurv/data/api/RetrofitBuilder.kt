@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "http://sd2-hiring.herokuapp.com/api/"
+    private const val BASE_URL = "https://sd2-hiring.herokuapp.com/api/"
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()

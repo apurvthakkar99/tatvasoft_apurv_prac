@@ -1,11 +1,12 @@
 package com.tatvasoft.apurv
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+//import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tatvasoft.apurv.data.adapter.ApiUserAdapter
@@ -17,8 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    public lateinit var viewModel: MainActivityViewModel
-    public lateinit var adapter: ApiUserAdapter
+     lateinit var viewModel: MainActivityViewModel
+     lateinit var adapter: ApiUserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,13 +71,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-//        viewModel = ViewModelProviders.of(
-//            this,
-//            ViewModelFactory(
-//                ApiHelperImpl(RetrofitBuilder.apiService))
-//            )
-//        ).get(MainActivityViewModel::class.java)
+        //viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+
+        viewModel = ViewModelProviders.of(
+            this,
+            ViewModelFactory(
+                apiHelper = ApiHelperImpl(RetrofitBuilder.apiService))
+        ).get(MainActivityViewModel::class.java)
     }
 }

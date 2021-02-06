@@ -9,7 +9,7 @@ import com.tatvasoft.apurv.data.model.ApiUser
 import com.tatvasoft.apurv.utils.Resource
 import kotlinx.coroutines.launch
 
-public class MainActivityViewModel(
+class MainActivityViewModel(
     private val apiHelper: ApiHelper,
 ) : ViewModel() {
 
@@ -23,7 +23,7 @@ public class MainActivityViewModel(
         viewModelScope.launch {
             users.postValue(Resource.loading(null))
             try {
-                val usersFromApi = apiHelper.getUsers()
+                val usersFromApi = apiHelper.getUsers(0,10)
                 users.postValue(Resource.success(usersFromApi))
             } catch (e: Exception) {
                 users.postValue(Resource.error(e.toString(), null))
