@@ -10,5 +10,5 @@ interface ApiService {
     suspend fun getUsers(
         @Query("offset") pageSize: Int,
         @Query("limit") currentPage: Int
-    ): List<ApiUser>
+    ): ApiUser
 }
