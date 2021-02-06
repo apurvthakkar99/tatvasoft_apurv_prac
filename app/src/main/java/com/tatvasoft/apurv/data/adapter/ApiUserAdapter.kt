@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tatvasoft.apurv.R
 import com.tatvasoft.apurv.data.model.ApiUser
-import kotlinx.android.synthetic.main.item_layout.view.*
+import kotlinx.android.synthetic.main.row_user.view.*
 
 class ApiUserAdapter(
     private val users: ArrayList<ApiUser>
 ) : RecyclerView.Adapter<ApiUserAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(user: ApiUser) {
+        fun bind(user: ApiUser, position: Int) {
 //            itemView.textViewUserName.text = user.name
 //            itemView.textViewUserEmail.text = user.email
-//            Glide.with(itemView.imageViewAvatar.context)
-//                .load(user.avatar)
-//                .into(itemView.imageViewAvatar)
+            Glide.with(itemView.ivUser.context)
+                .load(user.data.users[position].image)
+                .into(itemView.ivUser)
         }
     }
 
@@ -34,7 +34,7 @@ class ApiUserAdapter(
     override fun getItemCount(): Int = users.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
-        holder.bind(users[position])
+        holder.bind(users[position], position)
 
     fun addData(list: List<ApiUser>) {
         users.addAll(list)

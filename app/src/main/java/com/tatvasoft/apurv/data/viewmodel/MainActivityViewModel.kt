@@ -7,12 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.tatvasoft.apurv.ApiHelper
 import com.tatvasoft.apurv.data.model.ApiUser
 import com.tatvasoft.apurv.utils.Resource
-import com.tatvasoft.apurv.utils.Resource.Companion.error
-import com.tatvasoft.apurv.utils.Resource.Companion.loading
-import com.tatvasoft.apurv.utils.Resource.Companion.success
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(
+public class MainActivityViewModel(
     private val apiHelper: ApiHelper,
 ) : ViewModel() {
 
